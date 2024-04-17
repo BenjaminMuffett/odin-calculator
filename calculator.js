@@ -18,7 +18,23 @@ function divide(a, b) {
     if (b == 0) {
         return "Are you sure about that?"
     } else {
-        return Math.round(((a / b) + Number.EPSILON) * 100) / 100;
+        return Math.round(((a / b) + Number.EPSILON) * 100) / 100
     }
+}
 
+let number1 = 0 
+let number2 = 1
+let operator = '+'
+
+function operate (n1, n2, operator) {
+    switch (operator) {
+        case '+': 
+            return add(n1, n2)
+        case '-':
+            return subtract(n1, n2)
+        case '*':
+            return multiply(n1, n2)
+        case '/':
+            return divide(n1, n2)
+    }
 }
