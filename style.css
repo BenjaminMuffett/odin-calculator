@@ -1,0 +1,33 @@
+#body {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: stretch; */
+    width: 450px;
+    height: 600px;
+    outline: 2px solid purple;
+    padding: 2px;
+    margin: 2px;
+}
+
+#display {
+    min-height: 150px;
+    outline: 1px solid black;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    padding: 2px;
+
+}
+
+.number,
+.button,
+.operator {
+    flex: 1;
+    min-height: 20px;
+    outline: 1px solid orange;
+}
