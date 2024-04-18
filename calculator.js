@@ -38,3 +38,13 @@ function operate (n1, n2, operator) {
             return divide(n1, n2)
     }
 }
+let display = document.querySelector('#display')
+const buttons = document.querySelectorAll('.number');
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        if (display.textContent.length < 11) {
+            display.textContent = display.textContent + button.textContent
+        }
+        
+    })
+})
