@@ -9,11 +9,21 @@
     outline: 2px solid purple;
     padding: 2px;
     margin: 2px;
+    background-color: black;
+    border-radius: 6px;
 }
 
 #display {
-    min-height: 150px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 130px;
     outline: 1px solid black;
+    font-size: 75px;
+    padding: 10px;
+    margin: 3px;
+    border-radius: 4px;
+    background-color: #b2b9b7;
 }
 
 .row {
@@ -21,13 +31,38 @@
     flex-direction: row;
     flex: 1;
     padding: 2px;
+    
 
 }
 
 .number,
-.button,
+.action,
 .operator {
     flex: 1;
     min-height: 20px;
-    outline: 1px solid orange;
+    outline: 1px solid lightslategray;
+    font-size: 40px;
+    color: rgb(0, 0, 0);
+    font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    margin: 2px;
+    border-radius: 10px;
 }
+button {
+    transition-duration: 0.4s;
+  }
+button:hover {
+    background-color: #900be9;
+    color: white;
+  }
+
+.operator {background-color: rgb(0, 225, 255);}
+.number {background-color: rgb(243, 108, 255);}
+.action {background-color: rgb(201, 199, 199)}
+
+
+/* rgb(195, 0, 255), rgb(255, 24, 255) 
+
+.operator {background-color: rgb(0, 153, 255);}
+.number {background-color: rgb(255, 24, 255);}
+.button {background-color: rgb(160, 154, 154)}
