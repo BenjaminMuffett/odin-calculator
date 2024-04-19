@@ -62,6 +62,17 @@ function negPos() {
     }
 }
 
+function toPercent() {
+    if (number1 == display.textContent) {
+        number1 = (+number1 / 100).toString()
+        display.textContent = number1
+
+    }
+    if (number2 == display.textContent) {
+        number2 = (+number2 / 100).toString()
+        display.textContent = number2
+    }
+}
 
 
 let display = document.querySelector('#display')
@@ -76,10 +87,18 @@ numbers.forEach((number) => {
         number1 = number1 + number.textContent
         display.textContent = number1
     }
+
+    if (result.toString().length > 0 && result == +display.textContent ) {
+        clear()
+        number1 = number1 + number.textContent
+        display.textContent = number1
+    }
+
     if (operation.length == 1) {
         number2 = number2 + number.textContent
         display.textContent = number2
     }
+    
 
     })
 })
@@ -87,9 +106,7 @@ numbers.forEach((number) => {
 const operators = document.querySelectorAll('.operator.normal')
 operators.forEach((operator) => {
     operator.addEventListener("click", () => {
-        if (number1.toString().length > 0) {
-            operation = operator.textContent
-        }
+        
         if (result.toString().length > 0) {
             operation = operator.textContent
             result = ''
@@ -102,6 +119,10 @@ operators.forEach((operator) => {
             display.textContent = number1
             operation = operator.textContent
         }
+
+        if (number1.toString().length > 0) {
+            operation = operator.textContent
+        }
     })
 })
 
@@ -112,12 +133,6 @@ equal.addEventListener('click', () => {
         number1 = result
         display.textContent = number1
     }
-    
-    
-    
-    
-
-    
 })
 
 const clearBtn = document.querySelector("#clear")
@@ -125,3 +140,6 @@ clearBtn.addEventListener('click', clear)
 
 const signChange = document.querySelector('#sign')
 signChange.addEventListener('click', negPos)
+
+const percentChange = document.querySelector('#percent')
+percentChange.addEventListener('click',toPercent)
