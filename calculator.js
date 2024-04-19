@@ -22,10 +22,6 @@ function divide(a, b) {
     }
 }
 
-let number1 = 0 
-let number2 = 1
-let operator = '+'
-
 function operate (n1, n2, operator) {
     switch (operator) {
         case '+': 
@@ -38,13 +34,64 @@ function operate (n1, n2, operator) {
             return divide(n1, n2)
     }
 }
+
+let number1 = Number() 
+let number2 = Number()
+let number3 = Number()
+let result = Number()
+let operation = ''
+
+function clear() {
+    number1 = Number() 
+    number2 = Number()
+    number3 = Number()
+    result = Number()
+    operation = ''
+    display.textContent = '0'
+}
+
 let display = document.querySelector('#display')
-const buttons = document.querySelectorAll('.number');
-buttons.forEach((button) => {
-    button.addEventListener("click", () => {
+
+const numbers = document.querySelectorAll('.number');
+numbers.forEach((number) => {
+    number.addEventListener("click", () => {
+        if ( number1 == +display.textContent) {
+            display.textContent = ''
+        }
         if (display.textContent.length < 11) {
-            display.textContent = display.textContent + button.textContent
+            display.textContent = display.textContent + number.textContent
         }
         
     })
 })
+const operators = document.querySelectorAll('.operator.normal')
+operators.forEach((operator) => {
+    operator.addEventListener("click", () => {
+        if (operation.length > 0) {
+            number2 = +display.textContent
+            display.textContent = operate(number1, number2, operation)
+            number1 = +display.textContent
+            number2 = Number()
+            operation = ''
+        }
+        number1 = +display.textContent
+        operation = operator.textContent 
+    })
+})
+
+const equal = document.querySelector('#equal')
+equal.addEventListener('click', () => { 
+    number2 = +display.textContent
+    result = operate(number1, number2, operation)
+    if (result.toString().length > 11) {
+        display.textContent = 'Well, this has gotten out of hand...'
+    } else {
+        display.textContent = result
+        number1 = Number() 
+        number2 = Number()
+    }
+    
+})
+
+const clearBtn = document.querySelector("#clear")
+clearBtn.addEventListener('click', clear)
