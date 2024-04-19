@@ -88,7 +88,7 @@ numbers.forEach((number) => {
         display.textContent = number1
     }
 
-    if (result.toString().length > 0 && result == +display.textContent ) {
+    if (result.toString().length > 0 && number1 == display.textContent ) {
         clear()
         number1 = number1 + number.textContent
         display.textContent = number1
