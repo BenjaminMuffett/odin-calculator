@@ -35,6 +35,16 @@ function operate (n1, n2, operator) {
     }
 }
 
+function displayCheck(number) {
+    let roundVal = Math.round(((number) + Number.EPSILON) * 100) / 100
+    if (roundVal.toString().length < 12 || roundVal == '') {
+        return roundVal
+    } else {
+        return 'Too many digits for me to handle :('
+    }
+    //could also maybe use number.toFixed(2) and not need a function
+}
+
 let number1 = '' 
 let number2 = ''
 let number3 = ''
@@ -80,12 +90,11 @@ const numbers = document.querySelectorAll('.number');
 
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
-    // if (result.toString().length > 0) {
-    //     number2 = '' + number.textContent
-    // }
     if (operation.length == 0) {
         number1 = number1 + number.textContent
-        display.textContent = number1
+        if (number1.toString().length <12) {
+            display.textContent = number1
+        }
     }
 
     if (result.toString().length > 0 && number1 == display.textContent ) {
@@ -96,13 +105,17 @@ numbers.forEach((number) => {
 
     if (operation.length == 1) {
         number2 = number2 + number.textContent
-        display.textContent = number2
+        if (number2.toString().length <12) {
+            display.textContent = number2
+        }
     }
     
+    if (display.textContent.length > 15) {
+        clear()
+    }
 
     })
 })
-//operation.length == 0 &&
 const operators = document.querySelectorAll('.operator.normal')
 operators.forEach((operator) => {
     operator.addEventListener("click", () => {
@@ -113,7 +126,7 @@ operators.forEach((operator) => {
             number2 = ''
         }
         if (operation.length == 1 && number1.toString().length > 0 && number2.length > 0) {
-            number3 = operate(+number1, +number2, operation)
+            number3 = displayCheck(operate(+number1, +number2, operation))
             number1 = number3
             number2 = ''
             display.textContent = number1
@@ -129,7 +142,7 @@ operators.forEach((operator) => {
 const equal = document.querySelector('#equal')
 equal.addEventListener('click', () => {
     if (number1.toString().length > 0 && operation.length > 0) {
-        result = operate(+number1, +number2, operation)
+        result = displayCheck(operate(+number1, +number2, operation))
         number1 = result
         display.textContent = number1
     }
