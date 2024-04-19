@@ -50,10 +50,19 @@ function clear() {
     display.textContent = '0'
 }
 
+function negPos() {
+    if (number1 == display.textContent) {
+        number1 = (+number1 * -1).toString()
+        display.textContent = number1
 
-// if ( number1 == +display.textContent) {
-//     display.textContent = ''
-// }
+    }
+    if (number2 == display.textContent) {
+        number2 = (+number2 * -1).toString()
+        display.textContent = number2
+    }
+}
+
+
 
 let display = document.querySelector('#display')
 const numbers = document.querySelectorAll('.number');
@@ -113,3 +122,6 @@ equal.addEventListener('click', () => {
 
 const clearBtn = document.querySelector("#clear")
 clearBtn.addEventListener('click', clear)
+
+const signChange = document.querySelector('#sign')
+signChange.addEventListener('click', negPos)
