@@ -35,61 +35,73 @@ function operate (n1, n2, operator) {
     }
 }
 
-let number1 = Number() 
-let number2 = Number()
-let number3 = Number()
-let result = Number()
+let number1 = '' 
+let number2 = ''
+let number3 = ''
+let result = ''
 let operation = ''
 
 function clear() {
-    number1 = Number() 
-    number2 = Number()
-    number3 = Number()
-    result = Number()
+    number1 = '' 
+    number2 = ''
+    number3 = ''
+    result = ''
     operation = ''
     display.textContent = '0'
 }
 
-let display = document.querySelector('#display')
 
+// if ( number1 == +display.textContent) {
+//     display.textContent = ''
+// }
+
+let display = document.querySelector('#display')
 const numbers = document.querySelectorAll('.number');
+
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
-        if ( number1 == +display.textContent) {
-            display.textContent = ''
-        }
-        if (display.textContent.length < 11) {
-            display.textContent = display.textContent + number.textContent
-        }
-        
+    // if (result.toString().length > 0) {
+    //     number2 = '' + number.textContent
+    // }
+    if (operation.length == 0) {
+        number1 = number1 + number.textContent
+        display.textContent = number1
+    }
+    if (operation.length == 1) {
+        number2 = number2 + number.textContent
+        display.textContent = number2
+    }
+
     })
 })
 const operators = document.querySelectorAll('.operator.normal')
 operators.forEach((operator) => {
     operator.addEventListener("click", () => {
-        if (operation.length > 0) {
-            number2 = +display.textContent
-            display.textContent = operate(number1, number2, operation)
-            number1 = +display.textContent
-            number2 = Number()
-            operation = ''
+        if (operation.length == 0 && number1.length > 0) {
+            operation = operator.textContent
         }
-        number1 = +display.textContent
-        operation = operator.textContent 
+        if (result.toString().length > 0) {
+            operation = operator.textContent
+            result = ''
+            number2 = ''
+        }
+        if (operation.length == 1 && number1.length > 0 && number2.length > 0) {
+            number3 = operate(+number1, +number2, operation)
+            number1 = number3
+            number2 = ''
+            display.textContent = number1
+            operation = operator.textContent
+        }
     })
 })
 
 const equal = document.querySelector('#equal')
-equal.addEventListener('click', () => { 
-    number2 = +display.textContent
-    result = operate(number1, number2, operation)
-    if (result.toString().length > 11) {
-        display.textContent = 'Well, this has gotten out of hand...'
-    } else {
-        display.textContent = result
-        number1 = Number() 
-        number2 = Number()
-    }
+equal.addEventListener('click', () => {
+    result = operate(+number1, +number2, operation)
+    number1 = result
+    display.textContent = number1
+    
+
     
 })
 
