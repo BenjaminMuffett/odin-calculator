@@ -5,7 +5,7 @@ function add(a, b) {
 
 // subtract function - returns the difference of two digits 
 function subtract(a, b) {
-    return a - b
+    return (a - (b))
 }
 
 // multiply function - returns the product of two digits 
@@ -74,10 +74,11 @@ numbers.forEach((number) => {
 
     })
 })
+//operation.length == 0 &&
 const operators = document.querySelectorAll('.operator.normal')
 operators.forEach((operator) => {
     operator.addEventListener("click", () => {
-        if (operation.length == 0 && number1.length > 0) {
+        if (number1.toString().length > 0) {
             operation = operator.textContent
         }
         if (result.toString().length > 0) {
@@ -85,7 +86,7 @@ operators.forEach((operator) => {
             result = ''
             number2 = ''
         }
-        if (operation.length == 1 && number1.length > 0 && number2.length > 0) {
+        if (operation.length == 1 && number1.toString().length > 0 && number2.length > 0) {
             number3 = operate(+number1, +number2, operation)
             number1 = number3
             number2 = ''
@@ -97,9 +98,14 @@ operators.forEach((operator) => {
 
 const equal = document.querySelector('#equal')
 equal.addEventListener('click', () => {
-    result = operate(+number1, +number2, operation)
-    number1 = result
-    display.textContent = number1
+    if (number1.toString().length > 0 && operation.length > 0) {
+        result = operate(+number1, +number2, operation)
+        number1 = result
+        display.textContent = number1
+    }
+    
+    
+    
     
 
     
