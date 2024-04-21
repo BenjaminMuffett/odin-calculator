@@ -37,7 +37,7 @@ function operate (n1, n2, operator) {
 
 function displayCheck(number) {
     let roundVal = Math.round(((number) + Number.EPSILON) * 100) / 100
-    if (roundVal.toString().length <= 14 || roundVal == '') {
+    if (roundVal.toString().length < 13 || roundVal == '') {
         return roundVal
     } else {
         return 'Too many digits :('
@@ -91,8 +91,8 @@ const numbers = document.querySelectorAll('.number');
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
     if (operation.length == 0) {
-        number1 = number1 + number.textContent
-        if (number1.toString().length <13) {
+        if (number1.toString().length <12) {
+            number1 = number1 + number.textContent
             display.textContent = number1
         }
     }
@@ -103,9 +103,9 @@ numbers.forEach((number) => {
         display.textContent = number1
     }
 
-    if (operation.length == 1) {
-        number2 = number2 + number.textContent
-        if (number2.toString().length <13) {
+    if (operation.length == 1) { 
+        if (number2.toString().length <12) {
+            number2 = number2 + number.textContent
             display.textContent = number2
         }
     }
