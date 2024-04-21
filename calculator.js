@@ -169,3 +169,28 @@ percentChange.addEventListener('click',toPercent)
 
 const decimalPoint = document.querySelector("#decimal")
 decimalPoint.addEventListener('click', decimalCheck)
+
+// attempt at primitive keyboard support 
+
+window.addEventListener("keydown", function(e) {
+    if (number2 == '' && operation == '') {
+        if ((isFinite(e.key) == true) && number1.length < 12) {
+            number1 += e.key
+            display.textContent = number1
+        } 
+        if (e.key == '.' && number1.toString().includes('.') == false) {
+            number1 += e.key
+            display.textContent = number1
+        }
+    }
+    if (operation != '') {
+        if ((isFinite(e.key) == true) && number2.length < 12) {
+            number2 += e.key
+            display.textContent = number2
+        }
+        if (e.key == '.' && number2.toString().includes('.') == false) {
+            number2 += e.key
+            display.textContent = number2
+        }
+    }
+})
