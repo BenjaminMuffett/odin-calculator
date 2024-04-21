@@ -37,10 +37,10 @@ function operate (n1, n2, operator) {
 
 function displayCheck(number) {
     let roundVal = Math.round(((number) + Number.EPSILON) * 100) / 100
-    if (roundVal.toString().length < 12 || roundVal == '') {
+    if (roundVal.toString().length <= 14 || roundVal == '') {
         return roundVal
     } else {
-        return 'Too many digits for me to handle :('
+        return 'Too many digits :('
     }
     //could also maybe use number.toFixed(2) and not need a function
 }
@@ -92,7 +92,7 @@ numbers.forEach((number) => {
     number.addEventListener("click", () => {
     if (operation.length == 0) {
         number1 = number1 + number.textContent
-        if (number1.toString().length <12) {
+        if (number1.toString().length <13) {
             display.textContent = number1
         }
     }
@@ -105,7 +105,7 @@ numbers.forEach((number) => {
 
     if (operation.length == 1) {
         number2 = number2 + number.textContent
-        if (number2.toString().length <12) {
+        if (number2.toString().length <13) {
             display.textContent = number2
         }
     }
