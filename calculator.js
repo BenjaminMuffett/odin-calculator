@@ -84,6 +84,16 @@ function toPercent() {
     }
 }
 
+function decimalCheck() {
+    if (number1.toString().includes('.') == false && number1 == display.textContent) {
+        number1 = number1 + '.'
+        display.textContent = number1
+    }
+    if (number2.toString().includes('.') == false && number2 == display.textContent) {
+        number2 = number2 + '.'
+        display.textContent = number2
+    }
+}
 
 let display = document.querySelector('#display')
 const numbers = document.querySelectorAll('.number');
@@ -156,3 +166,6 @@ signChange.addEventListener('click', negPos)
 
 const percentChange = document.querySelector('#percent')
 percentChange.addEventListener('click',toPercent)
+
+const decimalPoint = document.querySelector("#decimal")
+decimalPoint.addEventListener('click', decimalCheck)
